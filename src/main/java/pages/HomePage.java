@@ -4,19 +4,17 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.concurrent.TimeUnit;
+public class HomePage {
 
-public class HomePage extends BasePage {
-
-    @FindBy(xpath = "//div[@class='menu-wrapper menu-wrapper_state_static ng-star-inserted']//a[contains(text(), 'Ноутбуки и компьютеры')]")
-    private WebElement laptopsAndComputersButton;
+    @FindBy(name = "search")
+    private WebElement searchField;
 
     WebDriver driver;
 
     public HomePage(WebDriver driver) {
+        this.driver=driver;
         PageFactory.initElements(driver, this);
     }
 
-    public void enterLaptops() { laptopsAndComputersButton.click(); }
-
+    public void searchByKeyword (final String keyword) { searchField.sendKeys(keyword, Keys.ENTER); }
 }

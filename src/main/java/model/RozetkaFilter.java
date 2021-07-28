@@ -1,8 +1,9 @@
 package model;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+
+
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "rozetkaFilter")
@@ -11,11 +12,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
     private String productGroup;
     private String brand;
-    private int sum;
+    private String sum;
 
-    public String getProductGroup() {
-        return productGroup;
-    }
+    public String getProductGroup() { return productGroup; }
 
     public void setProductGroup(String productGroup) {
         this.productGroup = productGroup;
@@ -29,12 +28,21 @@ import javax.xml.bind.annotation.XmlRootElement;
         this.brand = brand;
     }
 
-    public int getSum() {
-        return sum;
+    public String getSum() { return sum; }
+
+    public void setSum(String sum) { this.sum = sum; }
+
+
+    @Override
+    public String toString() {
+        return "RozetkaFilter{" +
+                "productGroup='" + productGroup + '\'' +
+                ", brand='" + brand + '\'' +
+                ", sum='" + sum + '\'' +
+                '}';
     }
 
-    public void setSum(int sum) {
-        this.sum = sum;
-    }
+
+
 
 }

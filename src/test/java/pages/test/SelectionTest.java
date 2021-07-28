@@ -5,37 +5,26 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.AddToCartPage;
 import pages.HomePage;
 import pages.LaptopsPage;
-//import pages.SumCheckingPage;
+import pages.SumCheckingPage;
 import util.PropertiesReader;
-
+//import util.XMLtoObject;
 import java.util.concurrent.TimeUnit;
 
 public class SelectionTest {
 
     private WebDriver driver;
-
-    // PropertiesReader propertiesReader = new PropertiesReader();
-    RozetkaFilter rozetkaFilter = new RozetkaFilter();
-
-//    @BeforeTest
-//    public void setUp() {
-//        System.setProperty(propertiesReader.getDriverName(), propertiesReader.getDriverLocation());
-//        propertiesReader.getURL();
-//
-//    }
+//    RozetkaFilter rozetkaFilter;
 
     @BeforeTest
-    public void profileSetUp() {
-        System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+    public void setUp() {
+        PropertiesReader propertiesReader = new PropertiesReader();
+        System.setProperty(propertiesReader.getDriverName(), propertiesReader.getDriverLocation());
+        propertiesReader.getURL();
     }
-
 
     @BeforeMethod
     public void testsSetUp() {
@@ -43,20 +32,22 @@ public class SelectionTest {
         driver.manage().window().maximize();
         driver.get("https://rozetka.com.ua/");
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+//        rozetkaFilter = new XMLtoObject().convert();
     }
 
     @Test
     public void chooseLaptop() {
 
-        WebDriverWait wait = new WebDriverWait(driver, 50);
 
+        WebDriverWait wait = new WebDriverWait(driver, 50);
         HomePage homePage = new HomePage(driver);
         LaptopsPage laptopsPage = new LaptopsPage(driver);
         AddToCartPage addToCartPage = new AddToCartPage(driver);
-//        SumCheckingPage sumCheckingPage = new SumCheckingPage(driver);
-//      homePage.searchByKeyword(rozetkaFilter.getProductGroup());
+
+        SumCheckingPage sumCheckingPage = new SumCheckingPage(driver);
+//        homePage.searchByKeyword(rozetkaFilter.getProductGroup());
         homePage.searchByKeyword("laptop");
-//      laptopsPage.searchByKeyword(rozetkaFilter.getBrand());
+//        laptopsPage.searchByKeyword(rozetkaFilter.getBrand());
         laptopsPage.searchByKeyword("HP");
         laptopsPage.clickOnBrand();
         laptopsPage.chooseElementOptions();
@@ -66,15 +57,16 @@ public class SelectionTest {
         addToCartPage.pressButtonBuy();
         wait.until(
                 webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
-//      sumCheckingPage.checkProductSum(rozetkaFilter.getSum()); - int значение, а мы переводили xml в string.
-//        sumCheckingPage.checkProductSum();
+//      sumCheckingPage.checkProductSum(rozetkaFilter.getSum());
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        sumCheckingPage.checkProductSum();
 
     }
 
-    @AfterMethod
-    public void tearDown() {
-        driver.close();
-    }
+//    @AfterMethod
+//    public void tearDown() {
+//        driver.close();
+//    }
 }
 
 

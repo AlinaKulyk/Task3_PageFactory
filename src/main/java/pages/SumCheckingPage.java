@@ -17,17 +17,17 @@ public class SumCheckingPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void checkProductSum() {
+    public boolean checkProductSum(int sum) {
 
         int result;
         String strPrice = price.getText();
         strPrice = strPrice.substring(0, strPrice.length() - 2);
         result = Integer.parseInt(strPrice);
 
-        if (result < 50000) {
-            System.out.println("Sum Of Products < 50 000");
+        if (result > 50000) {
+            return true;
         } else
-            System.out.println("Sum Of Products > 50 000");
+            return false;
     }
 }
 

@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
     private String productGroup;
     private String brand;
-    private String sum;
+    private int sum;
 
     public String getProductGroup() { return productGroup; }
 
@@ -28,9 +28,9 @@ import javax.xml.bind.annotation.XmlRootElement;
         this.brand = brand;
     }
 
-    public String getSum() { return sum; }
+    public int getSum() { return sum; }
 
-    public void setSum(String sum) { this.sum = sum; }
+    public void setSum(int sum) { this.sum = sum; }
 
 
     @Override
@@ -41,8 +41,5 @@ import javax.xml.bind.annotation.XmlRootElement;
                 ", sum='" + sum + '\'' +
                 '}';
     }
-
-
-
 
 }

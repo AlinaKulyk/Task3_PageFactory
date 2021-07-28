@@ -26,23 +26,3 @@ public class XMLtoObject {
         return null;
     }
 }
-
-//            String xmlstr = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-//                    "<rozetkaFilter>\n" +
-//                    "    <productGroup>Ноутбуки</productGroup>\n" +
-//                    "    <brand>Apple</brand>\n" +
-//                    "    <sum>50000</sum>\n" +
-//                    "</rozetkaFilter>";
-//
-//            StringReader reader = new StringReader(xmlstr);
-//            JAXBContext jaxbContext = JAXBContext.newInstance(RozetkaFilter.class);
-//            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-//
-//            RozetkaFilter rozetkaFilter = (RozetkaFilter) unmarshaller.unmarshal(reader);
-//            return rozetkaFilter;
-//
-//        } catch (JAXBException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
